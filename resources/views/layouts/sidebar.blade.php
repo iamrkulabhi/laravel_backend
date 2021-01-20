@@ -39,6 +39,8 @@
             <h6 class="collapse-header">User management:</h6>
             <a class="collapse-item {{ Route::is('admin.user.show') ? 'active' : '' }}" href="{{ route('admin.user.show') }}">All users</a>
             <a class="collapse-item {{ Route::is('admin.user.add') ? 'active' : '' }}" href="{{ route('admin.user.add') }}">Add new user</a>
+            <a class="collapse-item" href="#">Role</a>
+            <a class="collapse-item" href="#">Permission</a>
         </div>
     </div>
 </li>

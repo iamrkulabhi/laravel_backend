@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -43,4 +44,24 @@ class ProfileController extends Controller
 
         return redirect()->route('admin.profile')->with('success', 'profile updated successfully!');
     }
+
+    public function change_password(){
+        return view('admin.profile.change-password');
+    }
+
+    public function on_change_password(Request $request){
+        //dd($request->all());
+        $request->validate([
+            'password' => 'required|string|min:8',
+            'password_confirmation' => 'required|same:password'
+        ]);
+
+        $user = Auth::user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('admin.profile.change-password')->with('success', 'password updated successfully!');
+
+    }
+
 }

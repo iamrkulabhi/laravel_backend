@@ -33,10 +33,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
         Route::post('/edit/{id}', [UserController::class, 'on_edit'])->name('admin.user.edit');
+
+
     });
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('admin.profile');
     Route::post('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
+
+    Route::get('/profile/change-password', [ProfileController::class, 'change_password'])->name('admin.profile.change-password');
+    Route::post('/profile/change-password', [ProfileController::class, 'on_change_password'])->name('admin.profile.change-password');
 });
 
 require __DIR__.'/auth.php';
